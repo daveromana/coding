@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main()
+{
+	int a[32000],test,count,error,i,j,k,n,m;
+	scanf("%d",&test);
+	a[0]=2;
+	a[1]=3;
+	count=2;
+	for(i=5;i*i<=1000000000;i++)
+	{
+		error=0;
+		for(j=2;j*j<=i;j++)
+		{
+			if(i%j==0)
+			{
+				error=1;
+				break;
+			}
+		}
+		if(error==0)
+		{
+			a[count]=i;
+			count++;
+		}
+	}
+	while(test>0)
+	{
+		scanf("%d %d",&n,&m);
+		if(n==1)
+			n++;
+		for(i=n;i<=m;i++)
+		{
+			error=0;
+			for(j=0;j<count;j++)
+			{
+				if((a[j]*a[j])>i)
+					break;
+				if(i%a[j]==0)
+				{
+					error=1;
+					break;
+				}
+			}
+			if(error==0)
+				printf("%d\n",i);
+		}
+		printf("\n");
+		test--;
+	}
+	return 0;
+}
